@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 //                  실패시 -> 왜 실패했는지 서버가 알려주는대로 토스트
                     if (code == 200) {
 
+//                      Toast는 백그라운드에서 실행이되나 백그라운드에서 UI에 접근하면 에러가 남으로 runOnUiThread를 통해 해결
                         runOnUiThread {
                             Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                         }
