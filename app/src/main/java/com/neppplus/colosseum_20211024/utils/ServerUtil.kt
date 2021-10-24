@@ -66,8 +66,6 @@ class ServerUtil {
 
 //                  화면단에서, 응답에 대한 처리방안을 제시했다면 (handler가 null 아니라면 - 실체가 있다면 처리방법대로 하도록 명령.)
                     handler?.onResponse(jsonObj)
-
-
                 }
             })
 
