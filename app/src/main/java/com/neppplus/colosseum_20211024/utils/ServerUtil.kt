@@ -1,5 +1,6 @@
 package com.neppplus.colosseum_20211024.utils
 
+import android.graphics.Paint
 import android.util.Log
 import okhttp3.*
 import org.json.JSONObject
@@ -69,6 +70,42 @@ class ServerUtil {
                 }
             })
 
+        }
+
+//      회원가입 기능
+
+        fun putRequestSignUp(email: String, pw: String, nickName: String, handler: JsonResponseHandler?) {
+
+            val urlString = "${BASE_URL}/user"
+
+            val formData = FormBody.Builder()
+                .add("email", email)
+                .add("password", pw)
+                .add("nick_name", nickName)
+                .build()
+
+            val request = Request.Builder()
+                .url(urlString)
+                .put(formData)
+                .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    // body!! : 절대로 null 허용 안 함
+                    // toString 못 씀
+                    val bodyString = response.body!!.string()
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+                    // jsonObj가 null이 아닐 때 handler 처리를 해주세요.
+                    handler?.onResponse(jsonObj)
+                }
+            })
         }
 
     }
