@@ -45,7 +45,7 @@ class MainActivity : BaseActivity() {
 
 //                      Toast는 백그라운드에서 실행이되나 백그라운드에서 UI에 접근하면 에러가 남으로 runOnUiThread를 통해 해결
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
@@ -53,7 +53,7 @@ class MainActivity : BaseActivity() {
                         val message = jsonObject.getString("message")
 
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
