@@ -52,8 +52,17 @@ class MainActivity : BaseActivity() {
                     if (code == 200) {
 
 //                      Toast는 백그라운드에서 실행이되나 백그라운드에서 UI에 접근하면 에러가 남으로 runOnUiThread를 통해 해결
+//                        runOnUiThread {
+//                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+//                        }
+
+//                      응용문제. 로그인 한 사람의 닉네임 추출 -> "~~님, 환영합니다!" 토스트로 출력
+                        val dataObj = jsonObject.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickName = userObj.getString("nick_name")
+
                         runOnUiThread {
-                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${nickName}님, 환영합니다!", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {

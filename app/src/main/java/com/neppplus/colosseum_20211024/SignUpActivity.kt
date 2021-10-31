@@ -26,7 +26,7 @@ class SignUpActivity : BaseActivity() {
             val inputNickname = binding.nicknameEdt.text.toString()
 
 //          입력 데이터 => 서버의 회원가입 기능에 요청. => ServerUtil 함수 활용. => 함수가 아직 없으니 추가로 만들자
-          ServerUtil.putRequestSignUp(inputEmail, inputPw, inputEmail, object : ServerUtil.JsonResponseHandler {
+          ServerUtil.putRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler {
               override fun onResponse(jsonObject: JSONObject) {
                   
 //                jsonObj 분석 -> UI 반영 코드만 작성
