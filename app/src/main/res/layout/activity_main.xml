@@ -6,46 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:gravity="center"
         tools:context=".MainActivity">
 
         <TextView
+            android:id="@+id/aaa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디" />
-
-        <EditText
-            android:id="@+id/emailEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:hint="이메일 양식으로 입력" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="비밀번호" />
-
-        <EditText
-            android:id="@+id/passwordEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="비빌번호 입력" />
-
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="로그인"/>
-
-        <Button
-            android:id="@+id/signUpBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="회원가입"/>
-
+            android:textSize="20sp"
+            android:text="로그인한 사람 닉네임 - 연습용"/>
 
     </LinearLayout>
 </layout>
+

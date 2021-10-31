@@ -39,9 +39,11 @@ class SignUpActivity : BaseActivity() {
         binding.checkEmailBtn.setOnClickListener {
             val inputEmail = binding.emailEdt.text.toString()
 
-            ServerUtil.getRequestDuplCheck("email", inputEmail, object : ServerUtil.JsonResponseHandler {
+            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObject: JSONObject) {
                     val code = jsonObject.getInt("code")
+
+                    Log.d("코드값", code.toString())
 
                     runOnUiThread {
                         if (code == 200) {
@@ -86,35 +88,35 @@ class SignUpActivity : BaseActivity() {
             ServerUtil.putRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler {
                 override fun onResponse(jsonObject: JSONObject) {
                   
-//              jsonObj 분석 -> UI 반영 코드만 작성
+//                  jsonObj 분석 -> UI 반영 코드만 작성
                   
-//                code : 성공 (200) / 실패 (그 외) 여부
-                  val code = jsonObject.getInt("code")
+//                  code : 성공 (200) / 실패 (그 외) 여부
+                    val code = jsonObject.getInt("code")
 
-                  if (code == 200) {
-//                    회원가입 성공. => "~~님, 회원가입을 축하합니다!" 토스트
+                    if (code == 200) {
+//                      회원가입 성공. => "~~님, 회원가입을 축하합니다!" 토스트
 
-                      val dataObj = jsonObject.getJSONObject("data")
-                      val userObj = dataObj.getJSONObject("user")
-                      val nickName = userObj.getString("nick_name")
+                        val dataObj = jsonObject.getJSONObject("data")
+                        val userObj = dataObj.getJSONObject("user")
+                        val nickName = userObj.getString("nick_name")
 
-                      runOnUiThread {
-                          Toast.makeText(mContext, "${nickName}님, 회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
-//                        회원가입 종료, 로그인으로 복귀
-                          finish()
-                      }
+                        runOnUiThread {
+                            Toast.makeText(mContext, "${nickName}님, 회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+//                          회원가입 종료, 로그인으로 복귀
+                            finish()
+                        }
 
-                  }
-                  else {
-//                    회원가입 실패. => 왜? message String에 담겨있을 예정
-                      val message = jsonObject.getString("message")
+                    }
+                    else {
+//                      회원가입 실패. => 왜? message String에 담겨있을 예정
+                        val message = jsonObject.getString("message")
 
-                      runOnUiThread{
-                          Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
-                      }
-                  }
-              }
-          })
+                        runOnUiThread{
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            })
 
         }
 
