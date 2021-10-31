@@ -63,7 +63,11 @@ class SignUpActivity : BaseActivity() {
             val inputPw = binding.pwEdt.text.toString()
             val inputNickname = binding.nicknameEdt.text.toString()
 
-//          입력값들이 괜찮은지 먼거저 검사. => 전부 통과해야 회원가입 실행.
+//          입력값들이 괜찮은지 먼저 검사. => 전부 통과해야 회원가입 실행.
+
+//          도전과제. 구글링 필요. => 입력한 이메일이, 이메일 양식이 맞는지? aaa@napp.kr 등.
+//          정규 표현식 활용. -> 이메일 양식 검증 정규표현식
+
             if (!isEmailOk) {
                 Toast.makeText(mContext, "이메일 확인을 다시 해주세요.", Toast.LENGTH_SHORT).show()
 
@@ -80,9 +84,9 @@ class SignUpActivity : BaseActivity() {
 
 //          입력 데이터 => 서버의 회원가입 기능에 요청. => ServerUtil 함수 활용. => 함수가 아직 없으니 추가로 만들자
             ServerUtil.putRequestSignUp(inputEmail, inputPw, inputNickname, object : ServerUtil.JsonResponseHandler {
-              override fun onResponse(jsonObject: JSONObject) {
+                override fun onResponse(jsonObject: JSONObject) {
                   
-//                jsonObj 분석 -> UI 반영 코드만 작성
+//              jsonObj 분석 -> UI 반영 코드만 작성
                   
 //                code : 성공 (200) / 실패 (그 외) 여부
                   val code = jsonObject.getInt("code")
